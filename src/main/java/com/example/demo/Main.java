@@ -28,7 +28,6 @@ public class Main extends Application {
         showLoginScreen(primaryStage);
     }
 
-    // Başlangıç ekranı - Görsel ve 2 buton
     private void showLoginScreen(Stage primaryStage) {
         Image image = new Image(getClass().getResource("/hesap_makinesi.png").toExternalForm());
         ImageView imageView = new ImageView(image);
@@ -151,6 +150,7 @@ public class Main extends Application {
         grid.setAlignment(Pos.CENTER);
         grid.setStyle("-fx-background-color: mistyrose;");
 
+        // ChatGPT yardımıyla yapılandırıldı: Grid üzerine butonlar otomatik olarak diziliyor
         String[] tuslar = {
                 "1", "2", "3", "+",
                 "4", "5", "6", "-",
@@ -177,6 +177,7 @@ public class Main extends Application {
         historyArea.setPrefHeight(150);
         historyArea.setStyle("-fx-background-color: #FFF0F5; -fx-text-fill: black;");
 
+        // ChatGPT yardımıyla entegre edildi: Kullanıcıya özel işlem geçmişi gösterimi
         User user = userManager.getUser(aktifKullanici);
         historyArea.clear();
         if (user != null) {
@@ -204,6 +205,7 @@ public class Main extends Application {
     private void tusTiklandi(String tus) {
         switch (tus) {
             case "C":
+                // ChatGPT yardımıyla kontrol mantığı kuruldu: Temizleme işlemleri ve giriş sıfırlama
                 ekran.setText("0");
                 islem = "";
                 yeniGiriseBaslandi = false;
@@ -211,6 +213,7 @@ public class Main extends Application {
                 break;
             case "=":
                 try {
+                    // ChatGPT'den destek alınarak oluşturuldu: Ekrandaki işlem tamamlanır, hesaplanır ve geçmişe kaydedilir
                     islem += ekran.getText();
                     double sonuc = hesaplaIfade(islem);
                     ekran.setText(String.valueOf(sonuc));
@@ -227,6 +230,7 @@ public class Main extends Application {
                 }
                 break;
             case "+": case "-": case "x": case "/":
+                // ChatGPT yardımıyla mantık geliştirildi: Operatör eklendiğinde işlem dizisi güncelleniyor
                 islem += ekran.getText() + tus;
                 islemLabel.setText(islem);
                 yeniGiriseBaslandi = true;
@@ -243,6 +247,7 @@ public class Main extends Application {
     }
 
     private double hesaplaIfade(String ifade) {
+        // ChatGPT yardımıyla yazıldı: Recursive descent parser ile işlem önceliğine göre matematiksel ifadeler çözümleniyor
         return new Object() {
             int pos = -1, ch;
             void nextChar() { ch = (++pos < ifade.length()) ? ifade.charAt(pos) : -1; }
